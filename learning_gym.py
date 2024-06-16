@@ -13,7 +13,7 @@ def recog2stat(height, isFuelEmpty, isFlightOver, ap, pe):
     return ret
 
 def calc_reward(ap, pe):
-    return pe + np.log10(max(ap,1))
+    return pe + (ap//10)
 
 def calc_action(action):
     time = 0.75 # アクションにかける時間
@@ -43,6 +43,13 @@ class KSPgym(gym.Env):
     def reset(self):
         # 環境を初期状態にする関数
         # 初期状態をreturnする
+        position_of_uchiagemae = (988, 537)
+        position_of_uchiagemae2= (1019,576)
+        pyautogui.click(*position_of_uchiagemae) # 打ち上げ前に戻る
+        pyautogui.click(*position_of_uchiagemae) # 打ち上げ前に戻る
+        pyautogui.click(*position_of_uchiagemae2) # 打ち上げ前に戻る
+        pyautogui.click(*position_of_uchiagemae2) # 打ち上げ前に戻る
+        sleep(1)
         pyautogui.keyDown("f9")
         sleep(3)
         pyautogui.keyUp("f9")
@@ -53,6 +60,7 @@ class KSPgym(gym.Env):
             sleep(1)
         pyautogui.click(360,878)
         print("changed mode")
+        sleep(0.2)
         pyautogui.press("t")
         print("pressed T")
 

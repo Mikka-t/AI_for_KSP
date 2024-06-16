@@ -81,7 +81,7 @@ def prefix(txt, misc):
         for w in dic4fuel:
             txt = txt.replace(w, dic4fuel[w])
 
-        flightovers = set(["We","W0","WO","Wo","Ws","Vea","ee","W","Ve","WA","WA,","RA","WA.","RA,","RA.","Ua","Ua,","Ua."])
+        flightovers = set(["We","W0","WO","Wo","Ws","Vea","ee","W","Ve","WA","WA,","RA","WA.","RA,","RA.","Ua","Ua,","Ua.","Pen","Pes","Pe.","Pern"])
         if txt[-3:] == "m/s":
             txt = txt[:-3]
         elif txt[-4:]=="m /s" or txt[-4:]=="mi/s":
@@ -96,6 +96,9 @@ def prefix(txt, misc):
     elif misc == "point":
         remain = ""
         if txt[0] == "-":
+            txt = txt[1:]
+            isMinus = True
+        if txt[0] == "~":
             txt = txt[1:]
             isMinus = True
         if txt[0] == "+":
